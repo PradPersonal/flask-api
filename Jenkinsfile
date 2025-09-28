@@ -44,7 +44,7 @@ pipeline {
                 branch 'main'
             }
             steps {
-                echo 'Deploying application to production...'
+                echo 'Deploying application to staging...'
                 // The deployment step will depend on your target environment.
                 // For a simple example, you could use SSH to connect to a server
                 // and start the container.
@@ -55,5 +55,6 @@ pipeline {
         }
     }
 }
+
 
 
