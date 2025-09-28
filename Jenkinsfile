@@ -22,6 +22,7 @@ pipeline {
             steps {
                 script {
                     echo 'Running tests with volume mount...'
+                    echo "Testing for environment from branch: ${env.BRANCH_NAME}"
                     // Create the test-results directory in the Jenkins workspace
                     sh 'mkdir -p test-results'
                     
@@ -68,6 +69,7 @@ pipeline {
         }
     }
 }
+
 
 
 
