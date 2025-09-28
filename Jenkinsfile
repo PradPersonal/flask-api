@@ -51,7 +51,9 @@ pipeline {
             when {
                 // Optional: Deploy only for the 'main' branch
                 //branch 'main'
-                return env.BRANCH_NAME == 'main'
+                expression {
+                    return env.BRANCH_NAME == 'main'
+                }
             }
             steps {
                 echo "Deploying branch: ${env.BRANCH_NAME}"
@@ -66,6 +68,7 @@ pipeline {
         }
     }
 }
+
 
 
 
