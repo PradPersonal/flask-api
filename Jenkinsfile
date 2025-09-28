@@ -21,20 +21,16 @@ pipeline {
         stage('Test Application') {
             steps {
                 script {
-                    echo 'Running tests...'
-                    // Create a container and run tests inside it.
-                    sh 'docker create --name test-runner flask-app-image sh -c "python -m pytest --junitxml=test-results/report.xml"'
-                    //sh 'docker run --rm -v $(pwd):/app -w /app flask-app-image sh -c "python -m pytest --junitxml=test-results/report.xml"'
-                    sh 'docker start --attach test-runner'
+                    echo 'Running tests with volume mount...'
+                    // Create the test-results directory in the Jenkins workspace
+                    sh 'mkdir -p test-results'
                     
-                    // Copy the test report from the container to the Jenkins workspace
-                    sh 'docker cp test-runner:/app/test-results .'
+                    // Run the container, mounting the workspace to write reports directly
+                    sh 'docker run --rm -v $(pwd)/test-results:/app/test-results -w /app flask-app-image python -m pytest --junitxml=test-results/report.xml'
                 }
             }
             post {
                 always {
-                    // Remove the temporary container
-                    sh 'docker rm test-runner'
                     // Archive test reports.
                     junit '**/test-reports/results.xml'
                 }
