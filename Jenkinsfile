@@ -37,7 +37,7 @@ pipeline {
             }
         }
 
-        stage('Deploy to Production') {
+        stage('Deploy to Staging') {
             when {
                 // Optional: Deploy only for the 'main' branch
                 branch 'main'
@@ -53,3 +53,4 @@ pipeline {
         }
     }
 }
+
