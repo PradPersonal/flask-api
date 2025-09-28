@@ -36,8 +36,19 @@ pipeline {
                 }
             }
         }
-
         stage('Deploy to Staging') {
+            when {
+                expression {
+                    return env.BRANCH_NAME == 'staging'
+                }
+            }
+            steps {
+                echo "Deploying to Staging environment from branch: ${env.BRANCH_NAME}"
+                // Add your deployment steps here
+            }
+        }
+        stage('Deploy to main') {
+            echo "Deploying branch: ${env.BRANCH_NAME}"
             when {
                 // Optional: Deploy only for the 'main' branch
                 branch 'main'
@@ -54,5 +65,6 @@ pipeline {
         }
     }
 }
+
 
 
