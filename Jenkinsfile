@@ -49,8 +49,10 @@ pipeline {
                 // and start the container.
                 // Example for a remote server:
                 // sh "ssh user@your-server.com 'docker stop my-flask-app || true && docker rm my-flask-app || true && docker run -d --name my-flask-app -p 5000:5000 flask-app-image'"
+                echo "Deploying to staging environment completed."
             }
         }
     }
 }
+
 
