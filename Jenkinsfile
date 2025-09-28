@@ -37,27 +37,13 @@ pipeline {
                 }
             }
         }
+
         stage('Deploy to Staging') {
             when {
-                expression {
-                    return env.BRANCH_NAME == 'staging'
-                }
-            }
-            steps {
-                echo "Deploying to Staging environment from branch: ${env.BRANCH_NAME}"
-                // Add your deployment steps here
-            }
-        }
-        stage('Deploy to main') {
-            when {
                 // Optional: Deploy only for the 'main' branch
-                //branch 'main'
-                expression {
-                    return env.BRANCH_NAME == 'main'
-                }
+                branch 'main'
             }
             steps {
-                echo "Deploying branch: ${env.BRANCH_NAME}"
                 echo 'Deploying application to production...'
                 // The deployment step will depend on your target environment.
                 // For a simple example, you could use SSH to connect to a server
@@ -69,12 +55,5 @@ pipeline {
         }
     }
 }
-
-
-
-
-
-
-
 
 
