@@ -24,7 +24,7 @@ pipeline {
                     echo 'Running tests...'
                     // Create a container and run tests inside it.
                     // This assumes you have tests defined and pytest is in requirements.txt.
-                    sh 'docker run --rm -v $(pwd):/app -w /app flask-app-image python -m pytest'
+                    sh 'docker run --rm -v $(pwd):/app -w /app flask-app-image sh -c "python -m pytest --junitxml=test-results/report.xml"'
                 }
             }
             post {
