@@ -32,7 +32,7 @@ pipeline {
             post {
                 always {
                     // Archive test reports.
-                    junit '**/test-reports/results.xml'
+                    junit '**/test-results/report.xml'
                 }
             }
         }
