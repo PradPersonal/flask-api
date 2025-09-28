@@ -48,12 +48,12 @@ pipeline {
             }
         }
         stage('Deploy to main') {
-            echo "Deploying branch: ${env.BRANCH_NAME}"
             when {
                 // Optional: Deploy only for the 'main' branch
                 branch 'main'
             }
             steps {
+                echo "Deploying branch: ${env.BRANCH_NAME}"
                 echo 'Deploying application to production...'
                 // The deployment step will depend on your target environment.
                 // For a simple example, you could use SSH to connect to a server
@@ -65,6 +65,7 @@ pipeline {
         }
     }
 }
+
 
 
 
