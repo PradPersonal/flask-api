@@ -23,12 +23,18 @@ pipeline {
                 script {
                     echo 'Running tests...'
                     // Create a container and run tests inside it.
-                    // This assumes you have tests defined and pytest is in requirements.txt.
-                    sh 'docker run --rm -v $(pwd):/app -w /app flask-app-image sh -c "python -m pytest --junitxml=test-results/report.xml"'
+                    sh 'docker create --name test-runner flask-app-image sh -c "python -m pytest --junitxml=test-results/report.xml"'
+                    //sh 'docker run --rm -v $(pwd):/app -w /app flask-app-image sh -c "python -m pytest --junitxml=test-results/report.xml"'
+                    sh 'docker start --attach test-runner'
+                    
+                    // Copy the test report from the container to the Jenkins workspace
+                    sh 'docker cp test-runner:/app/test-results .'
                 }
             }
             post {
                 always {
+                    // Remove the temporary container
+                    sh 'docker rm test-runner'
                     // Archive test reports.
                     junit '**/test-reports/results.xml'
                 }
