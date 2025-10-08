@@ -20,7 +20,8 @@ Requirements:
     - Build: Install dependencies using pip.
     - Test: Run unit tests using a testing framework like pytest.
     - Deploy: If tests pass, deploy the application to a staging environment.
- 
+ <img width="940" height="518" alt="image" src="https://github.com/user-attachments/assets/ef8aae3e-aee9-428d-9a6d-51b90cb38a3f" />
+
 
 4. Triggers:
    - Configure the pipeline to trigger a new build whenever changes are pushed to the main branch of the repository.
