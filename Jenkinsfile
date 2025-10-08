@@ -5,17 +5,10 @@ pipeline {
         stage('Get Branch Name') {
             steps {
                 script {
-                    // Extract the simple branch name from the GIT_BRANCH environment variable.
-                    // The variable is in the format "origin/branch-name".
                     def fullBranchName = env.GIT_BRANCH
                     def branchName = fullBranchName.minus('origin/')
                     
                     echo "Starting build on branch: ${branchName}"
-                    
-                    // You can also use a shell command to get the branch name.
-                    // The `git rev-parse --abbrev-ref HEAD` command gives the simple name.
-                    def branchNameFromShell = sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
-                    echo "Branch name from shell command: ${branchNameFromShell}"
                 }
             }
         }
@@ -58,7 +51,8 @@ pipeline {
         stage('Deploy to Staging') {
             when {
                 // Optional: Deploy only for the 'main' branch
-                branch 'main'
+                //branch 'main'
+                expression { env.GIT_BRANCH == 'origin/main' }
             }
             steps {
                 echo 'Deploying application to staging...'
@@ -72,6 +66,7 @@ pipeline {
         }
     }
 }
+
 
 
 
