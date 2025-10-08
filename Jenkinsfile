@@ -4,6 +4,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
+                echo "Building on branch: ${env.BRANCH_NAME}"
                 // The pipeline will automatically check out the SCM.
                 echo 'Repository code has been checked out.'
             }
@@ -55,6 +56,7 @@ pipeline {
         }
     }
 }
+
 
 
 
