@@ -6,7 +6,8 @@ Requirements:
 1. Setup:
    - Install Jenkins on a virtual machine or use a cloud-based Jenkins service.
    - Configure Jenkins with Python and any necessary libraries.
- 
+ <img width="654" height="495" alt="image" src="https://github.com/user-attachments/assets/5f11ef43-aec2-4c53-a5f6-21304e438b6d" />
+
 2. Source Code:
   - Fork the provided Python web application repository on GitHub (provide a link to a sample Python web application repository).
  
