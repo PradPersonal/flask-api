@@ -5,6 +5,10 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 echo "Building on branch: ${env.BRANCH_NAME}"
+                def fullBranchName = env.GIT_BRANCH
+                def branchName = fullBranchName.minus('origin/')
+                    
+                echo "Starting build on branch: ${branchName}"
                 // The pipeline will automatically check out the SCM.
                 echo 'Repository code has been checked out.'
             }
@@ -55,6 +59,7 @@ pipeline {
         }
     }
 }
+
 
 
 
