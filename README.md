@@ -10,7 +10,8 @@ Requirements:
 
 2. Source Code:
   - Fork the provided Python web application repository on GitHub (provide a link to a sample Python web application repository).
- 
+ <img width="771" height="547" alt="image" src="https://github.com/user-attachments/assets/5cc81484-d372-4bbe-aa85-2f27992f813e" />
+
   - Clone the forked repository into your Jenkins server.
 
 3. Jenkins Pipeline:
