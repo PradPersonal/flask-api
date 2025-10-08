@@ -1,14 +1,28 @@
 pipeline {
     agent any
 
+    stage('Get Branch Name') {
+            steps {
+                script {
+                    // Extract the simple branch name from the GIT_BRANCH environment variable.
+                    // The variable is in the format "origin/branch-name".
+                    def fullBranchName = env.GIT_BRANCH
+                    def branchName = fullBranchName.minus('origin/')
+                    
+                    echo "Starting build on branch: ${branchName}"
+                    
+                    // You can also use a shell command to get the branch name.
+                    // The `git rev-parse --abbrev-ref HEAD` command gives the simple name.
+                    def branchNameFromShell = sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
+                    echo "Branch name from shell command: ${branchNameFromShell}"
+                }
+            }
+        }
+
     stages {
         stage('Clone Repository') {
             steps {
                 echo "Building on branch: ${env.BRANCH_NAME}"
-                def fullBranchName = env.GIT_BRANCH
-                def branchName = fullBranchName.minus('origin/')
-                    
-                echo "Starting build on branch: ${branchName}"
                 // The pipeline will automatically check out the SCM.
                 echo 'Repository code has been checked out.'
             }
@@ -59,6 +73,7 @@ pipeline {
         }
     }
 }
+
 
 
 
