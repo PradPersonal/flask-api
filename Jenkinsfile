@@ -1,7 +1,8 @@
 pipeline {
     agent any
 
-    stage('Get Branch Name') {
+    stages {
+        stage('Get Branch Name') {
             steps {
                 script {
                     // Extract the simple branch name from the GIT_BRANCH environment variable.
@@ -18,8 +19,6 @@ pipeline {
                 }
             }
         }
-
-    stages {
         stage('Clone Repository') {
             steps {
                 echo "Building on branch: ${env.BRANCH_NAME}"
@@ -73,6 +72,7 @@ pipeline {
         }
     }
 }
+
 
 
 
