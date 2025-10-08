@@ -26,13 +26,5 @@ Requirements:
  
 5. Notifications:
    - Set up a notification system to alert via email when the build process fails or succeeds.
-6. Documentation:
-   - Document the pipeline process and any prerequisites needed for the setup in a README.md file in the repository.
-7. Submission:
-   - Provide the URL to the GitHub repository with the Jenkinsfile and updated README.md.
-   - Include screenshots of the Jenkins pipeline showing the build, test, and deployment stages.
-Deliverables:
-- Forked GitHub repository with Jenkinsfile.
-- Documentation in README.md.
-- Screenshots of the Jenkins pipeline execution.
+
 
